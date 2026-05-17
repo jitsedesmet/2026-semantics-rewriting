@@ -1,0 +1,13 @@
+# D = <database>
+# CO = <change-owner>
+
+eval()_5 a ex:triple-patch .
+eval()_5 idd:insert
+  <<( eval(CO-{new-id})_6 ex:hasPet eval(CO-{new-id}, CO-{pet-id})_7 )>> .
+eval()_5 idd:insert <<( eval(CO-{new-id}, CO-{pet-id})_7 a ex:pet )>> .
+eval()_5 idd:insert <<( eval(CO-{new-id}, CO-{pet-id})_7 ex:age D(recursion) )>> .
+eval()_5 idd:insert <<( eval(CO-{new-id}, CO-{pet-id})_7 ex:name D(recursion) )>> .
+eval()_5 idd:delete <<( eval(CO-{id})_8 ex:hasPet eval(CO-{id}, CO{pet-id}) )>> .
+eval()_5 idd:delete <<( eval(CO-{id}, CO{pet-id}) a ex:pet )>> .
+eval()_5 idd:delete <<( eval(CO-{id}, CO{pet-id}) ex:age D(recursion) )>> .
+eval()_5 idd:delete <<( eval(CO-{id}, CO{pet-id}) ex:name D(recursion) )>> .

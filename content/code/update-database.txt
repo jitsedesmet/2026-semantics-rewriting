@@ -1,0 +1,19 @@
+INSERT {
+  GRAPH <database> {
+    ?ownerBound a ex:owner ;
+        ex:name ?name ; ex:pet ?petBound .
+    ?petBound a ex:pet ;
+        ex:name ?petName ; ex:age ?age .
+  }
+} WHERE {
+  ?resource ex:name ?name ;
+  BIND(UUID() AS ?ownerUuid) .
+  ?resource ex:pet ?pet .
+  BIND(UUID() AS ?petUuid).
+  ?pet ex:name ?petName ;
+      ex:age ?age ;
+  BIND(URI(CONCAT(ex:owners, '/', ?ownerUuid))
+      AS ?ownerBound) .
+  BIND(URI(CONCAT(?ownerBound, '/', ?petUuid))
+      AS ?petBound) .
+}

@@ -1,0 +1,65 @@
+@import "ceurart.scss";
+@import "shared.scss";
+@import "shared_override.scss";
+
+header {
+  .actions, .context {
+    display: none;
+  }
+}
+
+.screenonly {
+  display: none !important;
+}
+
+
+@font-face {
+  font-family: 'Libertinus Sans';
+  src: url('../fonts/LibertinusSans-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Libertinus Sans';
+  src: url('../fonts/LibertinusSans-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Libertinus Serif';
+  src: url('../fonts/LibertinusSerif-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Libertinus Serif';
+  src: url('../fonts/LibertinusSerif-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Libertinus Sans';
+  src: url('../fonts/LibertinusSans-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Libertinus Mono';
+  src: url('../fonts/LibertinusMono-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'Libertinus Serif', serif !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Libertinus Sans', sans-serif !important;
+}
+
+//code, samp {
+//  font-family: "Libertinus Mono", monospace !important;
+//  word-wrap:break-word;
+//}

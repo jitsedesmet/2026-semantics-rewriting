@@ -1,0 +1,60 @@
+@prefix idd: <https://jitsedesmet.be/interface-data-description#> .
+@prefix ex: <https://example.org#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<post-owners> a idd:write-interface ;
+              idd:interaction idd:http-post-turtle ;
+              idd:http-resource <https://example.org/owners> ;
+              idd:rdf-shape <owner-new-shape> ;
+              idd:mapping """
+PREFIX ex: <https://example.org/'>
+CONSTRUCT {
+    ?owner-bound a ex:owner ;
+                 ex:name ?name ;
+                 ex:pet ?pet-bound .
+    ?pet-bound a ex:pet ;
+               ex:name ?petName ;
+               ex:age ?age .
+} WHERE {
+    BIND( UUID() AS ?owner-uuid ).
+    BIND( UUID(?pet) AS ?pet-uuid ).
+    BIND( CONCAT(ex:owners, '/', ?owner-uuid) AS ?owner-bound ) .
+    BIND( CONCAT(?owner-bound, '/', ?pet-uuid) AS ?pet-bound ) .
+
+    ?resource ex:name ?name ;
+              ex:pet ?pet .
+    ?pet ex:name ?petName ;
+         ex:age ?age ;
+}
+"""^^idd:sparql-1-1 .
+
+<owner-new-shape>
+    a sh:NodeShape ;
+    sh:closed true ;
+    sh:property [
+          sh:path ex:name ;
+          sh:datatype xsd:string ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+      ] ;
+    sh:property [
+          sh:path ex:pet ;
+          sh:node ex:pet-new-shape ;
+      ] .
+
+<pet-new-shape>
+    a sh:NodeShape ;
+    sh:closed true ;
+    sh:property [
+          sh:path ex:name ;
+          sh:datatype xsd:string ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+      ] ;
+    sh:property [
+          sh:path ex:age ;
+          sh:datatype xsd:positiveInteger ;
+          sh:minCount 1 ;
+          sh:maxCount 1 ;
+      ] .

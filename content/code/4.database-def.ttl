@@ -1,0 +1,39 @@
+@prefix idd: <https://jitsedesmet.be/interface-data-description#> .
+@prefix ex: <https://example.org#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Since this store is durable, we advice against using blanknodes.
+<database>
+    a idd:read-interface, idd:stateful-store ;
+    idd:state-input _:post-owners-sink , _:patch-owners-sink .
+
+_:post-owners-sink idd:source <post-owners> ;
+                   idd:set-operation idd:union .
+
+_:patch-owners-sink idd:source <patch-owners> ;
+                    idd:mapping """
+PREFIX ex: <https://example.org/>
+CONSTRUCT {
+    GRAPH idd:difference { ?resource ex:name ?old-name }
+    GRAPH idd:union { ?resource ex:name ?new-name }
+} WHERE {
+    [] a ex:owner-patch;
+       ex:name ?new-name ;
+       ex:resource ?resource .
+    # Verify the resource exists
+    GRAPH <database> {
+       ?resource ex:name ?old-name .
+    }
+}"""^^idd:sparql-1-1  .
+
+_:change-owners-sink idd:source <change-owners> ;
+                     idd:mapping """
+PREFIX ex: <https://example.org/>
+CONSTRUCT {
+    GRAPH idd:difference { ?delete-s ?delete-p ?delete-o }
+    GRAPH idd:union { ?insert-s ?insert-p ?insert-o }
+} WHERE {
+    [] a ex:triple-patch ;
+       idd:insert <<( ?insert-s ?insert-p ?insert-o )>> ;
+       idd:delete <<( ?delete-s ?delete-p ?delete-o )>> .
+}"""^^idd:sparql-1-2 .

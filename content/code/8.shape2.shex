@@ -1,0 +1,5 @@
+# OPS = <owner-patch-shape>
+
+eval()_3 a ex:owner-patch .
+eval()_3 ex:name OPS(ex:name) .
+eval()_3 ex:focussed-owner eval(<patch-owner>-{uuid})_4 .

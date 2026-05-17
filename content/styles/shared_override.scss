@@ -1,0 +1,81 @@
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@font-face {
+  font-family: 'Libertinus Sans';
+  src: url('../fonts/LibertinusSans-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Libertinus Sans';
+  src: url('../fonts/LibertinusSans-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Libertinus Serif';
+  src: url('../fonts/LibertinusSerif-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Libertinus Sans';
+  src: url('../fonts/LibertinusSans-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+.printfont1 {
+  font-family: "Libertinus Sans", sans-serif;
+}
+.printfont2 {
+  font-family: "Libertinus Serif", serif;
+  font-weight: bold;
+}
+.printfont3 {
+  font-family: "Libertinus Sans", sans-serif;
+}
+.printfont4 {
+  font-family: "Libertinus Serif", serif;
+  font-weight: bold;
+}
+
+.my-big-fig {
+  display: grid;
+  grid-template-columns: 1fr;
+  min-width: 0;
+  margin: 1em 0;
+  padding: 0;
+  gap: 1em;
+}
+
+@media print {
+  .my-big-fig {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.my-big-fig * {
+  min-width: 0;
+  margin: 0;
+}
+
+h2.noBefore:before {
+  content: '' !important;
+}
+
+sup.mySup, sub.mySup {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+}
+sub.mySup {
+  top: 0.4em;
+}
+

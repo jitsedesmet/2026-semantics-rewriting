@@ -1,0 +1,13 @@
+# provenance (prov) can be tracked for subject (s), predicate (p), and object (o) separately
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix ex: <http://example.org/>
+<owner-shape> {
+  a  [ex:owner];        # from <post-owner> (no spo prov.)
+  ex:name xsd:string;   # from <post-owner> (po prov from `ex:name` of input shape) and <patch-owner> (spo prov `ex:name` of input shape)
+  ex:pet @<pet-shape>+; # from <post-owner> (no input-shape prov) and <change-owner> (spo prov from <database> query)
+}
+<pet-shape> {
+  a [ex:pet] ;          # from <post-owner> (no spo prov.)
+  ex:name xsd:string ;  # from <post-owner> (po prov from `ex:name`)
+  ex:age xsd:positiveInteger ; # from <post-owner> (po prov `ex:age`)
+}

@@ -1,0 +1,30 @@
+@prefix idd: <https://jitsedesmet.be/interface-data-description#> .
+@prefix ex: <https://example.org#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<patch-owner> a idd:write-interface ;
+               idd:interaction idd:http-patch-turtle ;
+               idd:http-resource "https://example.org/owners/{uuid}"^^ex:uri-template ;
+               idd:rdf-shape <owner-patch-shape> ;
+               idd:mapping """
+PREFIX ex: <https://example.org/'>
+CONSTRUCT {
+    [] a ex:owner-patch;
+       ex:name ?name;
+       ex:focussed-owner ?resource .
+} WHERE {
+    BIND( URI( CONCAT(ex:owners, '/', ?uuid) ) AS ?resource ) .
+    ?resource ex:name ?name .
+}
+"""^^idd:sparql-1-1 .
+
+<owner-patch-shape>
+    a sh:NodeShape ;
+    sh:closed true ;
+    sh:property [
+        sh:path ex:name ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .

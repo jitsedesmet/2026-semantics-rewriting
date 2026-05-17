@@ -1,0 +1,9 @@
+# ONS = <owner-new-shape>
+# PNS = <pet-new-shape>
+
+eval()_1 a ex:owner .
+eval()_1 ex:name ONS(ex:name) .
+eval()_1 ex:hasPet eval(eval()_1, ONS(ex:name))_2 *.
+eval(eval()_1, ONS(ex:name))_2 a ex:pet .
+eval(eval()_1, ONS(ex:name))_2 ex:name PNS(ex:name) .
+eval(eval()_1, ONS(ex:name))_2 ex:age PNS(ex:age) .

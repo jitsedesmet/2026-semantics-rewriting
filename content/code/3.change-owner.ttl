@@ -1,0 +1,40 @@
+@prefix idd: <https://jitsedesmet.be/interface-data-description#> .
+@prefix ex: <https://example.org#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<change-owners> a idd:write-interface ;
+                idd:interaction idd:http-patch-turtle ;
+                idd:http-resource "https://example.org/owners/{id}/{pet-id}/change-owner/{new-id}"^^ex:uri-template ;
+                idd:rdf-shape [
+                      a sh:NodeShape ;
+                      sh:closed true ; ] ;
+                idd:mapping """
+PREFIX ex: <https://example.org/'>
+CONSTRUCT {
+    [] a ex:triple-patch ;
+       idd:insert <<( ?new-owner ex:pet ?moved-iri )>>,
+                  <<( ?moved-iri a ex:pet )>>,
+                  <<( ?moved-iri ex:age ?age )>>,
+                  <<( ?moved-iri ex:name ?name )>> ;
+       idd:delete <<( ?orig-owner ex:pet ?orig-pet )>>,
+                  <<( ?orig-pet a ex:pet )>>,
+                  <<( ?orig-pet ex:age ?age )>>,
+                  <<( ?orig-pet ex:name ?name )>> .
+} WHERE {
+    BIND( URI( CONCAT(ex:owners, '/', ?uuid) ) AS ?orig-owner ) .
+    BIND( URI( CONCAT(ex:owners, '/', ?uuid, '/', ?pet-id) ) AS ?orig-pet ) .
+    BIND( URI( CONCAT(ex:owners, '/', ?new-id) ) AS ?new-owner ) .
+    BIND( URI( CONCAT(?new-owner, '/', ?pet-id) ) AS ?moved-iri ) .
+
+    # Go look in the current state of the database for whether the owner and pet exist.
+    GRAPH <database> {
+        ?orig-owner ex:pet ?orig-pet .
+        ?orig-pet a ex:pet ;
+                  ex:age ?age ;
+                  ex:name ?name .
+        ?new-owner a ex:owner ;
+    }
+
+}
+"""^^idd:sparql-1-2 .

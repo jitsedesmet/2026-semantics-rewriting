@@ -1,0 +1,13 @@
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ex: <http://example.org/>
+ASK {
+  ?owner a ex:owner ;
+         ex:name ?ownerName ;
+         ex:pet ?pet ;
+  FILTER(datatype(?ownerName) = xsd:string) .
+  ?pet a ex:pet ;
+       ex:name ?petName ;
+       ex:age ?petAge .
+  FILTER(datatype(?petName) = xsd:string &&
+      datatype(?petAge) = xsd:positiveInteger) .
+}

@@ -1,0 +1,17 @@
+@prefix idd: <https://jitsedesmet.be/interface-data-description#> .
+@prefix ex: <https://example.org#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<get-owners> a idd:read-interface ;
+             idd:interaction idd:http-get-turtle ;
+             idd:http-resource <https://example.org/owners> ;
+             idd:mapping """
+CONSTRUCT {
+    [] ex:item ?owner .
+} WHERE {
+    <database> {
+        ?owner a ex:owner .
+    }
+}
+"""^^idd:sparql-1-1 .
