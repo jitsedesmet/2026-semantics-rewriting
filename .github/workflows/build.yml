@@ -17,10 +17,18 @@ jobs:
       - name: Setup Ruby ✨
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.3'
+          ruby-version: '4.0'
           bundler-cache: true
 
       - name: Install and Build 🔧
         run: |
           bundle exec nanoc compile
           bundle exec nanoc check internal_links mixed_content stale
+  build-img:
+    uses: ./.github/workflows/build-might-push.yml
+    permissions:
+      packages: read
+      contents: read
+    with:
+      push: false
+
