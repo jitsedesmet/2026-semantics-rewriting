@@ -25,7 +25,7 @@
 	title        = {Gaia-X},
 	url          = {https://gaia-x.eu/}
 }
-@techreport{spec:rdf,
+@techreport{spec:rdf-1-1,
 	title        = {RDF 1.1: Concepts and Abstract Syntax},
 	author       = {Cyganiak, Richard and Wood, David and Lanthaler, Markus},
 	year         = 2014,
@@ -1744,4 +1744,100 @@
 	month        = oct,
 	booktitle    = {Proceedings of the 17th International Semantic Web Conference: Posters and Demos},
 	url          = {https://comunica.github.io/Article-ISWC2018-Demo-GraphQlLD/}
+}
+@inproceedings {
+	1942_42560,
+	Author = {Maarten Vandenbrande and Maxime JAKUBOWSKI and Pieter Bonte and Bart Buelens and Femke Ongenae and Jan VAN DEN BUSSCHE},
+	Title = {POD-QUERY: Schema Mapping and Query Rewriting for Solid Pods},
+	Booktitle = {Proceedings of the Second International Workshop on Semantic Industrial Information Modelling (SemIIM 2023)},
+	Series = {CEUR Workshop Proceedings},
+	Year = {2023},
+	Abstract = {We envisage a decentralized Web architecture in which access to data in Solid pods is mediated by Web agents. Leveraging methods from information integration and data exchange, Web agents can give clients access to views defined by schema mappings. Queries formulated by clients over the view are rewritten by the agent to queries that work correctly over the base data. We demonstrate POD-QUERY, our prototype implementation of such an architecture, where schema alignment is specified by RDF-to-RDF mappings written in RML, and SPARQL queries are rewritten based on these mappings. We demonstrate our system in a personal health scenario.},
+	Note = {International Semantic Web Conference},
+	Note = {6–10 November 2023},
+	Type = {Proceedings Paper},
+	Language = {en},
+	ISSN = {1613-0073},
+	Keywords = {Decentralized Web; Personal data management; Web agent; Schema alignment; },
+}
+@inproceedings{impl-rml-logical-view,
+  abstract     = {{Although the W3C Community Group on Knowledge Graph Construction (KGC)’s work on the modular
+RDF Mapping Language (RML) specification has taken great strides, open issues and respective solution
+proposals remain. Some of these issues are (i) inability to handle hierarchy in nested data, (ii) limited
+join functionality, and (iii) inability to handle mixed data formats. To combat these issues, the RML
+Logical Views module is proposed. However, proper but efficient validation of this module requires
+an implementation that allows short development cycles. In this workshop paper, we propose a proofof-concept RML Logical Views implementation, independent of and complementary to existing RML
+mapping engines. Our proof-of-concept covers three important features of the new RML Logical
+Views module: (i) flattening of nested data, (ii) extended joining of data sources, and (iii) handling
+mixed data formats. Our implementation supports one nested source format (JSON) and one tabular
+source format (CSV), and can be used independently, as preprocessor, by any RML Engine. With this
+implementation, we successfully executed the available relevant test cases of the RML Logical Views
+module. Additionally, we measured the knowledge graph construction times on GTFS-Madrid-Bench.
+To accomplish this we added an option to our implementation that replaces referencing object maps
+with joins in RML Logical Views. When we included our implementation in the knowledge graph
+construction pipeline, we noticed considerable execution time reductions. We conclude that the RML
+Logical Views specification can be implemented, and can solve needs that were not yet solvable by RML.
+The current implementation can already be realized as a modular part of a knowledge graph construction
+process. Although boosting performance was not the aim of our work, our implementation reduces the
+execution time of GTFS-Madrid-Bench scale 100 by 16%, 33%, and 39% when combined respectively with
+SMD-Rdfizer or RPT/Sansa, Morph-KGC, and Carml. RMLStreamer, when used alone, times out after
+two hours on this task, but, in conjunction with our implementation, completes it in 236 seconds. We
+hope this proof-of-concept inspires the developers of existing RML engines to integrate the RML Logical
+Views module and benefit from its features.}},
+  author       = {{de Vleeschauwer, Els and Maria, P. and De Meester, Ben and Colpaert, Pieter}},
+  booktitle    = {{KGCW 2024 : Knowledge Graph Construction 2024 : Proceedings of the 5th International Workshop on Knowledge Graph Construction co-located with 21th Extended Semantic Web Conference (ESWC 2024)}},
+  issn         = {{1613-0073}},
+  language     = {{eng}},
+  location     = {{Hersonissos, Greece}},
+  pages        = {{14}},
+  title        = {{RML-view-to-CSV : a proof-of-concept Implementation for RML Logical Views}},
+  url          = {{https://ceur-ws.org/Vol-3718/}},
+  volume       = {{3718}},
+  year         = {{2024}},
+}
+@inproceedings{lenzerini2002data,
+  title={Data integration: A theoretical perspective},
+  author={Lenzerini, Maurizio},
+  booktitle={Proceedings of the twenty-first ACM SIGMOD-SIGACT-SIGART symposium on Principles of database systems},
+  pages={233--246},
+  year={2002}
+}
+@InProceedings{traqula-resource,
+author="De Smet, Jitse
+and Taelman, Ruben",
+editor="Acosta, Maribel
+and van Erp, Marieke
+and Rudolph, Sebastian
+and Hartig, Olaf
+and Spahiu, Blerina
+and Rula, Anisa
+and Garijo, Daniel
+and Osborne, Francesco",
+title="Traqula: Providing a Foundation for the Evolving SPARQL Ecosystem Through Modular Query Parsing, Transformation, and Generation",
+booktitle="The Semantic Web",
+year="2026",
+publisher="Springer Nature Switzerland",
+address="Cham",
+pages="232--252",
+abstract="SPARQL engines continue to diverge in the versions and language extensions they support. With SPARQL 1.2 nearing completion and the working group's plans toward future maintenance, this divergence is likely to grow. As a result, language tools that aim to support multiple SPARQL versions and dialects face increasing maintenance costs. Furthermore, areas such as SPARQL federation become harder to manage. To address these challenges, we introduce Traqula, a modular TypeScript-based framework for parsing, transforming, and generating SPARQL queries. This article presents Traqula's architecture and its builder-based dependency-injection design, and we show how these components provide modular support for SPARQL 1.1 and 1.2 parsing and generation. Traqula enables round-tripping, supports generic algebraic and AST transformations, and delivers significantly faster parsing compared to current JavaScript-based SPARQL parsing. Traqula's modular architecture enables flexible experimentation for researchers, and it is production-ready thanks to extensive testing and modern development techniques. Looking forward, Traqula lays the groundwork for supporting additional query languages, developing generic rewriting modules for SPARQL federation engines, and building robust tooling for an increasingly diverse SPARQL ecosystem.",
+isbn="978-3-032-25159-6"
+}
+
+@inproceedings{hartig2017foundations,
+  title={Foundations of RDF* and SPARQL*:(An alternative approach to statement-level metadata in RDF)},
+  author={Hartig, Olaf},
+  booktitle={AMW 2017 11th Alberto Mendelzon International Workshop on Foundations of Data Management and the Web, Montevideo, Uruguay, June 7-9, 2017.},
+  volume={1912},
+  year={2017},
+  organization={Juan Reutter, Divesh Srivastava}
+  url={https://www.diva-portal.org/smash/get/diva2:1141963/FULLTEXT01.pdf}
+}
+@techreport{spec:rdf-1-2-interop,
+	title        = {RDF 1.2 Interoperability},
+	author       = {Pierre-Antoine Champin},
+	year         = 2026,
+	month        = apr,
+	url          = {https://www.w3.org/TR/rdf12-interop/},
+	type         = {{W3C} Note Draft},
+	institution  = {W3C}
 }
