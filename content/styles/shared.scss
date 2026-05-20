@@ -104,3 +104,15 @@ ol.index-entries {
 .katex {
   line-height: 1 !important;
 }
+
+.fig-collection {
+  display: grid;
+  grid-template-columns: 1fr;
+  @media print {
+    grid-template-columns: 1fr 1fr;
+  }
+  gap: 0.5em;
+  * {
+    min-width: 0;
+  }
+}

@@ -46,26 +46,6 @@
   font-weight: bold;
 }
 
-.my-big-fig {
-  display: grid;
-  grid-template-columns: 1fr;
-  min-width: 0;
-  margin: 1em 0;
-  padding: 0;
-  gap: 1em;
-}
-
-@media print {
-  .my-big-fig {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.my-big-fig * {
-  min-width: 0;
-  margin: 0;
-}
-
 h2.noBefore:before {
   content: '' !important;
 }
