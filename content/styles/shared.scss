@@ -114,5 +114,14 @@ ol.index-entries {
   gap: 0.5em;
   * {
     min-width: 0;
+    overflow: hidden;
+  }
+  figure {
+    display: flex;
+    flex-direction: column;
+  }
+  pre {
+    overflow-x: auto;
+    max-width: 100%;
   }
 }
