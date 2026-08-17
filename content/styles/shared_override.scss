@@ -20,6 +20,12 @@
 }
 @font-face {
   font-family: 'Libertinus Serif';
+  src: url('../fonts/LibertinusSerif-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Libertinus Serif';
   src: url('../fonts/LibertinusSerif-Bold.woff2') format('woff2');
   font-weight: bold;
   font-style: normal;
@@ -31,15 +37,20 @@
   font-style: italic;
 }
 
+// These four classes are referenced by hidden spans in index.md.erb as a workaround for
+// a Chrome headless bug where @font-face rules scoped to print media don't reliably get
+// fetched/rasterized before --print-to-pdf runs (see comment in index.md.erb for details).
+// Each class must force-load a DISTINCT family+weight combo, otherwise that combo never
+// gets loaded in time and Chrome silently falls back to a generic font in the PDF.
 .printfont1 {
   font-family: "Libertinus Sans", sans-serif;
 }
 .printfont2 {
   font-family: "Libertinus Serif", serif;
-  font-weight: bold;
 }
 .printfont3 {
   font-family: "Libertinus Sans", sans-serif;
+  font-weight: bold;
 }
 .printfont4 {
   font-family: "Libertinus Serif", serif;
