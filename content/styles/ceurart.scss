@@ -992,7 +992,8 @@ margin-bottom:0;
 
 dl.references {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: max-content 1fr;
+  column-gap: 0.5em;
 }
 
 .references {
@@ -1000,15 +1001,14 @@ dl.references {
   line-height: 1.1em;
   margin-top: 0.35em;
   dt {
-    width: 16px;
     font-size: 1.1em;
     font-weight: normal;
     text-align: right;
-    float: left;
+    margin-right: 0;
   }
   dd {
     margin: 0;
-    padding-left: 0.5em;
+    padding-left: 0;
     display: block;
     overflow: hidden;
   }
