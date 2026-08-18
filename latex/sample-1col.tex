@@ -16,8 +16,12 @@
 %% Minted listings support
 %% Need pygment <http://pygments.org/> <http://pypi.python.org/pypi/Pygments>
 \usepackage{listings}
+%% The Type1 Libertinus mono shipped with the class has proportional
+%% capitals, which breaks the alignment of the SPARQL listings below.
+\usepackage[varqu,varl]{zi4}
 %% auto break lines
-\lstset{breaklines=true, basicstyle=\ttfamily\small}
+\lstset{breaklines=true, basicstyle=\ttfamily\footnotesize,
+        columns=fullflexible, keepspaces=true, upquote=true}
 
 %%
 %% end of the preamble, start of the body of the document source.
@@ -239,9 +243,11 @@ a pattern --- for instance because the predicates are incompatible ---
 contribute a \texttt{FILTER(FALSE)} branch, which a downstream
 optimizer can prune.
 
-\begin{figure}
+\begin{figure}[width=0.485\textwidth]
+\begin{minipage}[t]{0.485\textwidth}
 \begin{lstlisting}
-# Create a mapping from rdf reification to triple terms
+# Create a mapping from rdf reification
+# to triple terms
 CONSTRUCT { ?t rdf:reifies <<( ?s ?p ?o )>> }
 WHERE {
   ?t a rdf:Statement ; rdf:subject ?s ;
@@ -254,9 +260,8 @@ CONSTRUCT { ?s ?p ?o } WHERE {
   \caption{Two mappings: one constructs triple terms in the global,
     the other passes source triples through unchanged.}
   \label{fig:mapping}
-\end{figure}
-
-\begin{figure}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
 \begin{lstlisting}
 CONSTRUCT { ?s ?p ?o } WHERE {
   { ?m_t a rdf:Statement ;
@@ -273,9 +278,11 @@ CONSTRUCT { ?s ?p ?o } WHERE {
   \caption{The same global as Figure~\ref{fig:mapping}, expressed as a
     single CONSTRUCT required for the GAV-unfolding algorithm.}
   \label{fig:mapping-as-one}
+\end{minipage}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[width=0.485\textwidth]
+\begin{minipage}[t]{0.485\textwidth}
 \begin{lstlisting}
 SELECT * WHERE {
   ?t rdf:reifies <<( ?s rdf:type ?o )>> ;
@@ -286,16 +293,17 @@ SELECT * WHERE {
   \caption{Example user query: triple terms asserting
     \texttt{rdf:type} with a confidence score above 0.8.}
   \label{fig:user-query}
-\end{figure}
-
-\begin{figure}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.485\textwidth}
 \begin{lstlisting}
 SELECT ?score ?o ?s ?t WHERE {
   { ?t rdf:type rdf:Statement ; rdf:subject ?s ;
        rdf:predicate rdf:type ; rdf:object ?o . }
-  UNION { # Assume 1.1 sources -> no triple terms
+  UNION { # Assume 1.1 sources ->
+          # no triple terms
     FILTER ( FALSE ) }
-  { # Predicate rdf:reifies does not match ex:confidence
+  { # Predicate rdf:reifies does not
+    # match ex:confidence
     FILTER ( FALSE ) }
   UNION { ?t ex:confidence ?score }
   FILTER ( ?score > 0.8 )
@@ -307,6 +315,7 @@ SELECT ?score ?o ?s ?t WHERE {
     asks the source for triple terms; instead it expresses the same
     intent through the reification scheme used by the source.}
   \label{fig:rewritten-query}
+\end{minipage}
 \end{figure}
 
 \textbf{Scope.} Although this paper focuses on RDF 1.2
