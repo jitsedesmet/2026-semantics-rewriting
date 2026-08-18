@@ -12,7 +12,8 @@ COPY . .
 RUN bundle exec nanoc && \
     bundle exec nanoc check internal_links mixed_content stale && \
     chromium --headless --no-sandbox --disable-gpu --disable-dev-shm-usage \
-             --no-pdf-header-footer --print-to-pdf=output/paper.pdf "file://$(pwd)/output/index.html"
+             --no-pdf-header-footer --virtual-time-budget=8000 \
+             --print-to-pdf=output/paper.pdf "file://$(pwd)/output/index.html"
 
 FROM httpd:2 AS runner
 
