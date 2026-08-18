@@ -209,7 +209,7 @@ the equivalent single-headed form.
 
 \begin{figure}
   \centering
-  \includegraphics[width=0.8\linewidth]{interop}
+  \includegraphics[width=0.7\linewidth]{interop}
   \caption{A SPARQL 1.2 query $Q^{1.2}$ enters the Federation
     Mediator, which rewrites it through user-authored mappings. The
     red box highlights the reification interoperability use-case:
@@ -256,8 +256,7 @@ CONSTRUCT { ?s ?p ?o } WHERE {
   \caption{Two mappings: one constructs triple terms in the global,
     the other passes source triples through unchanged.}
   \label{fig:mapping}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.485\textwidth}
+
 \begin{lstlisting}
 CONSTRUCT { ?s ?p ?o } WHERE {
   { ?m_t a rdf:Statement ;
@@ -274,10 +273,7 @@ CONSTRUCT { ?s ?p ?o } WHERE {
   \caption{The same global as Figure~\ref{fig:mapping}, expressed as a
     single CONSTRUCT required for the GAV-unfolding algorithm.}
   \label{fig:mapping-as-one}
-\end{minipage}
-\end{figure}
-
-\begin{figure}[width=0.485\textwidth]
+\end{minipage}\hfill
 \begin{minipage}[t]{0.485\textwidth}
 \begin{lstlisting}
 SELECT * WHERE {
@@ -289,8 +285,7 @@ SELECT * WHERE {
   \caption{Example user query: triple terms asserting
     \texttt{rdf:type} with a confidence score above 0.8.}
   \label{fig:user-query}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.485\textwidth}
+
 \begin{lstlisting}
 SELECT ?score ?o ?s ?t WHERE {
   { ?t rdf:type rdf:Statement ; rdf:subject ?s ;
@@ -344,6 +339,15 @@ with several preset scenarios that exercise different facets of the
 framework: 1. wikidata reification, 2. exhaustive source selection,
 3. uniprot reification, and 4. paper filter Verborgh.
 
+\begin{figure}
+  \centering
+  \includegraphics[width=\linewidth]{screenshot}
+  \caption{Screenshot of the web interface: a user query is rewritten
+    against user-defined mappings and executed over the chosen
+    sources.}
+  \label{fig:screenshot}
+\end{figure}
+
 In the Wikidata reification example, we construct the global by
 copying all existing triples and adding triple terms to statements
 following Wikidata's $n$-ary reification approach; we then query the
@@ -382,15 +386,6 @@ read-only and shows the user query unfolded against the mappings after
 execution. The \emph{results panel} (bottom right) reports elapsed
 execution time, the result count, and the streaming bindings as they
 arrive.
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.75\linewidth]{screenshot}
-  \caption{Screenshot of the web interface: a user query is rewritten
-    against user-defined mappings and executed over the chosen
-    sources.}
-  \label{fig:screenshot}
-\end{figure}
 
 \section{Conclusion}
 \label{sec:conclusion}
