@@ -43,6 +43,7 @@ jobs:
         run: |
           google-chrome --headless --no-sandbox --disable-gpu --disable-dev-shm-usage \
             --no-pdf-header-footer \
+            --virtual-time-budget=8000 \
             --print-to-pdf=output/paper.pdf \
             "file://$(pwd)/output/index.html"
 
