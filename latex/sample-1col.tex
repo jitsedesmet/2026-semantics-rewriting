@@ -180,8 +180,8 @@ not address the triple-term rewriting that motivates this work.
 A related line of work is Ontology-Based Data Access
 (OBDA)~\cite{obda, obda-survey}, whose reference implementation is
 Ontop~\cite{ontop}. OBDA also relies on GAV unfolding, but typically
-maps relational sources --- through mapping languages such as
-R2RML~\cite{spec:r2rml} --- to an ontology and layers
+maps relational sources -- through mapping languages such as
+R2RML~\cite{spec:r2rml} -- to an ontology and layers
 description-logic reasoning on top. When the sources are already RDF
 and full TBox reasoning is not needed, plain GAV mediation is a
 lighter-weight fit, and the SPARQL SERVICE operator provides the
@@ -235,7 +235,7 @@ to \texttt{rdf:reifies} and the inner predicate of the triple term to
 \texttt{rdf:type}; these constants flow into the unfolded body,
 replacing \texttt{?p} by \texttt{rdf:type} in
 Figure~\ref{fig:rewritten-query}. Mappings whose template cannot match
-a pattern --- for instance because the predicates are incompatible ---
+a pattern -- for instance because the predicates are incompatible --
 contribute a \texttt{FILTER(FALSE)} branch, which a downstream
 optimizer can prune.
 
