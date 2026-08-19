@@ -352,15 +352,15 @@ following Wikidata's $n$-ary reification approach; we then query the
 \emph{instance of} property of Belgium. The exhaustive source
 selection example runs over the RDF profiles of Bryan, Ruben, and
 Jitse, querying the names of all scholarly articles on their profiles.
-The UniProt example again copies all existing triples and adds triple
+The UniProt example again copies all triples and adds triple
 terms, this time following the standard RDF reification that UniProt
 uses; we then query the annotations of a given protein. Finally, the
 set-theoretic example shows how these combinations work in practice:
 we construct the global as every triple in Jitse's and Ruben's
-profiles, except those related to articles that Verborgh also
+profiles, except those related to articles Verborgh also
 describes. Querying the scholarly articles and their names in this
-global, we see that Jitse's vision paper is missing, for instance,
-because Verborgh co-authored it.
+global, we see that Jitse's vision paper is missing because Verborgh
+co-authored it.
 
 The query rewriting mechanism is not limited to reification
 translation. Any mapping the user writes becomes part of the global
@@ -377,11 +377,11 @@ schemas, with reification interoperability as one application.
 
 The interface exposes this through four panels. The \emph{mappings
   panel} (top left) is where the user writes CONSTRUCT queries that
-together define the global schema. The \emph{query panel} (top right)
+define the global schema. The \emph{query panel} (top right)
 is where the user selects sources and writes the user query against
 that schema. The \emph{rewritten query panel} (bottom left) is
 read-only and shows the user query unfolded against the mappings after
-execution. The \emph{results panel} (bottom right) reports elapsed
+execution. The \emph{results panel} (bottom right) reports
 execution time, the result count, and the streaming bindings as they
 arrive.
 
@@ -394,15 +394,15 @@ triple-term construct and the reification patterns that datasets
 continue to use in practice. This use-case is one instantiation of a
 more general vision: SPARQL query answering over declarative
 RDF-to-RDF mappings, of which reification translation is one
-application among many.
+application.
 
 The mappings are GAV rules expressed as SPARQL CONSTRUCT queries, and
-rewriting proceeds by unfolding those rules into the user's query.
+rewriting unfolds those rules into the user's query.
 This declarative approach buys three things over a handwritten
 algorithm: 1. extensibility to reification schemes not foreseen at
 design time; 2. interpretable transformations that users can read
 directly; and 3. reuse of existing SPARQL skills, since mappings are
-written in the same language as the queries they rewrite. Because both the rules and the rewriting live within SPARQL, the
+written in the same language as the queries. Because both rules and rewriting live within SPARQL, the
 rewritten query runs on any standards-compliant SPARQL 1.2 federation
 engine, with no engine modification required.
 
