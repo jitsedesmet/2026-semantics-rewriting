@@ -259,8 +259,10 @@ CONSTRUCT { ?s ?p ?o } WHERE {
 
 \begin{lstlisting}
 CONSTRUCT { ?s ?p ?o } WHERE {
-  { ?m_t a rdf:Statement ; rdf:subject ?m_s ;
-       rdf:predicate ?m_p ; rdf:object ?m_o .
+  { ?m_t a rdf:Statement ;
+       rdf:subject ?m_s ;
+       rdf:predicate ?m_p ;
+       rdf:object ?m_o .
     BIND(?m_t as ?s) .
     BIND(rdf:reifies as ?p) .
     BIND(triple(?m_s, ?m_p, ?m_o) as ?o). }
@@ -439,7 +441,8 @@ the community needs to make the broader vision practical.
 \section*{Declaration on Generative AI}
 
 During the preparation of this work, the author(s) used Claude Opus
-4.7 in order to: Paraphrase, improve writing style, perform
+4.7 in order to: Paraphrase and reword, improve writing style,
+perform
 grammar and spelling checks, and critically review the text written by
 the authors to highlight essential information. After using these
 tool(s)/service(s), the author(s) reviewed and edited the content as
