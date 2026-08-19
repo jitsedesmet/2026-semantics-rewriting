@@ -1,0 +1,17 @@
+# LaTeX build artifacts
+*.aux
+*.abs
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.nav
+*.snm
+*.vrb
+*.xmpi
+creationdate.lua
+_minted*/
+
+# CEUR word-processor template, kept locally for reference only
+CEUR-Template-1col.odt
